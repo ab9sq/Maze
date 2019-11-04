@@ -1,0 +1,74 @@
+---
+title: "Untitled"
+author: "Nick Lauerman"
+date: "11/4/2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+halls <- 1:8
+doorSymbols <- c("Surf",
+                 "Turf",
+                 "Fin",
+                 "Feather",
+                 "Hook",
+                 "Crook")
+```
+
+
+```{r}
+makeRoom <- function(){
+     doors <- sample(doorSymbols, 6)
+     outHall <- sample(halls,1)
+     fountainPresent <- sample(c(TRUE,FALSE),1)
+     if(fountainPresent){
+          fountainPosion <- sample(c("Yes","No"),1)
+     } else {
+          fountainPosion <- " "
+     }
+     hold <- NULL
+     hold <- data.frame(roomName = " ",
+                        outHallway = outHall,
+                        FountainPresent = fountainPresent,
+                        FountainPosioned = fountainPosion,
+                        door1 = doors[1],
+                        door2 = doors[2],
+                        door3 = doors[3],
+                        door4 = doors[4],
+                        door5 = doors[5],
+                        door6 = doors[6])
+     return(hold)
+     }
+roomList <- NULL
+for(i in 1:10000){
+     currentRoom <- makeRoom()
+     roomList <- rbind(roomList,currentRoom)
+}
+```
+
+```{r}
+table(roomList$outHallway)
+table(roomList$FountainPresent)
+table(roomList$FountainPosioned)
+table(roomList$door1)
+table(roomList$door2)
+table(roomList$door3)
+table(roomList$door4)
+table(roomList$door5)
+table(roomList$door6)
+prop.table(table(roomList$outHallway))
+prop.table(table(roomList$FountainPresent))
+prop.table(table(roomList$FountainPosioned))
+prop.table(table(roomList$door1))
+prop.table(table(roomList$door2))
+prop.table(table(roomList$door3))
+prop.table(table(roomList$door4))
+prop.table(table(roomList$door5))
+prop.table(table(roomList$door6))
+hist(roomList$outHallway)
+```
+

@@ -19,7 +19,8 @@ makeRoom <- function(){
                         door3 = doors[3],
                         door4 = doors[4],
                         door5 = doors[5],
-                        door6 = doors[6])
+                        door6 = doors[6],
+                        stringsAsFactors = FALSE)
      return(hold)
      }
 roomList <- NULL
@@ -27,8 +28,7 @@ for(i in 1:32){
      currentRoom <- makeRoom()
      roomList <- rbind(roomList,currentRoom)
 }
-roomList$FountainPresent[1] <- "Yes"
-roomList$FountainPosioned[1] <- " "
+
 startState <- NULL
 RoomName <- c("Initial",
               rep_len(" ", 7))
@@ -51,11 +51,20 @@ for(i in 1:8){
                         door3 = doors[3],
                         door4 = doors[4],
                         door5 = doors[5],
-                        door6 = doors[6])
+                        door6 = doors[6],
+                        stringsAsFactors = FALSE)
      InitHalls <- rbind(InitHalls, hold)
 }
 
 hallList <- rbind(InitHalls, roomList)
-str(InitHalls)
 
+roomList$FountainPresent[1] <- "Yes"
+roomList$FountainPosioned[1] <- " "
+
+hallList$door1 <- factor(hallList$door1, doorSymbols)
+hallList$door2 <- factor(hallList$door2, doorSymbols)
+hallList$door3 <- factor(hallList$door3, doorSymbols)
+hallList$door4 <- factor(hallList$door4, doorSymbols)
+hallList$door5 <- factor(hallList$door5, doorSymbols)
+hallList$door6 <- factor(hallList$door6, doorSymbols)
 

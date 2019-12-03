@@ -3,8 +3,8 @@ source(file = "./Generation of setup values.R")
 makeRoom <- function(){
      doors <- sample(doorSymbols, 6)
      outHall <- sample(halls,1)
-     fountainPresent <- sample(c(TRUE,FALSE),1)
-     if(fountainPresent){
+     fountainPresent <- sample(c("Yes","No"),1)
+     if(fountainPresent == "Yes"){
           fountainPosion <- sample(c("Yes","No"),1)
      } else {
           fountainPosion <- " "
@@ -67,4 +67,6 @@ hallList$door3 <- factor(hallList$door3, doorSymbols)
 hallList$door4 <- factor(hallList$door4, doorSymbols)
 hallList$door5 <- factor(hallList$door5, doorSymbols)
 hallList$door6 <- factor(hallList$door6, doorSymbols)
+
+# started programing
 
